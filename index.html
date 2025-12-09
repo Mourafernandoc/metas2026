@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metas 2025 - Evolução Pessoal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <h1>✨ Metas 2025 - Evolução</h1>
+        <div class="header-actions">
+            <span id="frase-motivacional" class="motivacional">"O presente é o palco da sua evolução."</span>
+            <button id="btn-modo-toggle" class="btn-icon" title="Alternar Modo Escuro/Claro">
+                <i class="fas fa-sun"></i>
+            </button>
+            <a href="#historico-view" id="btn-historico" class="btn-secundario">
+                Histórico de Conquistas <i class="fas fa-trophy"></i>
+            </a>
+        </div>
+    </header>
+
+    <main id="dashboard-view" class="container active-view">
+        <div class="stats-overview">
+            <div class="stat-card">
+                <h3>Progresso Geral do Ano</h3>
+                <div class="progress-ring" data-progress="0">
+                    <svg viewBox="0 0 36 36" class="circular-chart">
+                        <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path id="path-progresso-geral" class="circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="0, 100"/>
+                    </svg>
+                    <span id="percentual-geral" class="percentage">0%</span>
+                </div>
+                <small>Metas Concluídas / Total</small>
+            </div>
+            <div class="stat-card">
+                <h3>Hábitos Diários</h3>
+                <div id="widget-habitos" class="habitos-list">
+                    <p>Nenhum hábito diário configurado.</p>
+                </div>
+                <button class="btn-adicionar-habito" onclick="openHabitoModal()">+ Novo Hábito</button>
+            </div>
+            <div class="stat-card stat-charts">
+                <h3>Estatísticas Rápidas</h3>
+                <div id="chart-container">
+                    <canvas id="prioridade-chart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <h2>Áreas de Evolução Pessoal</h2>
+        <div id="areas-grid" class="areas-grid">
+            </div>
+    </main>
+
+    <section id="historico-view" class="container hidden-view">
+        <button class="btn-voltar" onclick="showView('dashboard-view')"><i class="fas fa-arrow-left"></i> Voltar ao Dashboard</button>
+        <h2>🏆 Histórico de Conquistas 2025</h2>
+        <p id="historico-progresso-total" class="progresso-info"></p>
+        <div id="conquistas-lista" class="conquistas-lista">
+            </div>
+    </section>
+
+    <div id="modal-meta" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-meta')">&times;</span>
+            <h3 id="modal-meta-titulo">Adicionar Nova Meta</h3>
+            <form id="form-meta">
+                <input type="hidden" id="meta-id">
+
+                <label for="meta-descricao">Descrição da Meta:</label>
+                <textarea id="meta-descricao" required></textarea>
+
+                <label for="meta-categoria">Categoria:</label>
+                <select id="meta-categoria" required>
+                    </select>
+
+                <div class="form-group-inline">
+                    <label for="meta-prazo">Prazo (Opcional):</label>
+                    <input type="date" id="meta-prazo">
+                </div>
+
+                <div class="form-group-inline">
+                    <label for="meta-prioridade">Prioridade:</label>
+                    <select id="meta-prioridade" required>
+                        <option value="Baixa">Baixa</option>
+                        <option value="Média" selected>Média</option>
+                        <option value="Alta">Alta</option>
+                    </select>
+                </div>
+
+                <div id="habito-opcoes" class="form-group-checkbox hidden">
+                    <input type="checkbox" id="meta-eh-habito">
+                    <label for="meta-eh-habito">Converter para Hábito Recorrente?</label>
+                </div>
+
+                <button type="submit" class="btn-primario" id="btn-salvar-meta">Salvar Meta</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-habito" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal-habito')">&times;</span>
+            <h3>Novo Hábito Recorrente</h3>
+            <form id="form-habito">
+                <label for="habito-descricao">Descrição do Hábito:</label>
+                <input type="text" id="habito-descricao" required>
+
+                <label for="habito-frequencia">Frequência:</label>
+                <select id="habito-frequencia" required>
+                    <option value="Diária">Diária</option>
+                    <option value="Semanal">Semanal</option>
+                    <option value="Mensal">Mensal</option>
+                </select>
+
+                <button type="submit" class="btn-primario">Criar Hábito</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

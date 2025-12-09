@@ -1,0 +1,398 @@
+/* Variáveis de Tema (Para facilitar o Modo Escuro/Claro) */
+:root {
+    /* Cores do Tema Claro (Padrão) */
+    --cor-fundo-principal: #F5F5F7; /* Branco Suave */
+    --cor-fundo-card: #FFFFFF;
+    --cor-texto-principal: #333333;
+    --cor-sombra: rgba(0, 0, 0, 0.08);
+
+    /* Cores de Destaque */
+    --cor-primaria: #4A90E2; /* Azul Evolução */
+    --cor-secundaria: #FFC72C; /* Dourado Conquista */
+    --cor-sucesso: #28a745;
+    --cor-perigo: #dc3545;
+
+    /* Tipografia e Borda */
+    --font-principal: 'Roboto', sans-serif;
+    --borda-raio: 12px;
+}
+
+/* Modo Escuro */
+body.dark-mode {
+    --cor-fundo-principal: #1E212D; /* Preto/Azul Escuro */
+    --cor-fundo-card: #2C303E;
+    --cor-texto-principal: #F5F5F7;
+    --cor-sombra: rgba(255, 255, 255, 0.05);
+}
+
+/* -------------------- GERAL -------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-principal);
+    background-color: var(--cor-fundo-principal);
+    color: var(--cor-texto-principal);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* -------------------- HEADER -------------------- */
+.app-header {
+    background-color: var(--cor-fundo-card);
+    box-shadow: 0 2px 8px var(--cor-sombra);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.app-header h1 {
+    font-size: 1.5rem;
+    color: var(--cor-primaria);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.motivacional {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--cor-secundaria);
+}
+
+/* -------------------- BOTÕES GERAIS -------------------- */
+button, .btn-secundario {
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--borda-raio);
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn-primario {
+    background-color: var(--cor-primaria);
+    color: #FFFFFF;
+}
+
+.btn-primario:hover {
+    background-color: #3a7ad1;
+}
+
+.btn-secundario {
+    background-color: transparent;
+    border: 2px solid var(--cor-primaria);
+    color: var(--cor-primaria);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-icon {
+    background: none;
+    color: var(--cor-texto-principal);
+    font-size: 1.2rem;
+    padding: 8px;
+}
+
+/* -------------------- DASHBOARD & CARDS -------------------- */
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.card-area {
+    background-color: var(--cor-fundo-card);
+    padding: 20px;
+    border-radius: var(--borda-raio);
+    box-shadow: 0 4px 15px var(--cor-sombra);
+    border-top: 5px solid var(--cor-primaria);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-header h3 {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.progresso-texto {
+    font-size: 0.9rem;
+    color: #666;
+}
+.dark-mode .progresso-texto {
+    color: #b0b0b0;
+}
+
+.barra-progresso-container {
+    height: 8px;
+    background-color: #E0E0E0;
+    border-radius: 4px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+.dark-mode .barra-progresso-container {
+    background-color: #3d4253;
+}
+
+.barra-progresso {
+    height: 100%;
+    background-color: var(--cor-primaria);
+    transition: width 0.5s ease-in-out;
+}
+
+.card-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-adicionar, .btn-detalhes {
+    flex-grow: 1;
+    padding: 8px;
+    font-size: 0.85rem;
+}
+
+.btn-adicionar {
+    background-color: var(--cor-primaria);
+    color: white;
+}
+.btn-detalhes {
+    background-color: transparent;
+    color: var(--cor-primaria);
+    border: 1px solid var(--cor-primaria);
+}
+
+/* -------------------- METAS EM DETALHE -------------------- */
+.lista-metas {
+    list-style: none;
+    padding: 0;
+}
+
+.meta-item {
+    background-color: var(--cor-fundo-principal);
+    border-radius: var(--borda-raio);
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid;
+    transition: background-color 0.3s;
+}
+
+.meta-item.prioridade-Alta { border-left-color: var(--cor-perigo); }
+.meta-item.prioridade-Média { border-left-color: var(--cor-primaria); }
+.meta-item.prioridade-Baixa { border-left-color: var(--cor-sucesso); }
+
+.meta-info {
+    flex-grow: 1;
+}
+.meta-info h4 { margin-bottom: 5px; }
+.meta-info small { color: #888; }
+
+.meta-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.checkbox-concluida {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--cor-secundaria);
+}
+
+/* -------------------- MODAL -------------------- */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background-color: var(--cor-fundo-card);
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: var(--borda-raio);
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover, .close-btn:focus {
+    color: var(--cor-primaria);
+    text-decoration: none;
+}
+
+.modal-content label, .modal-content input, .modal-content textarea, .modal-content select {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.modal-content input:not([type="checkbox"]), .modal-content textarea, .modal-content select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: var(--cor-fundo-principal);
+    color: var(--cor-texto-principal);
+}
+
+.form-group-inline {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.form-group-inline > * {
+    flex: 1;
+}
+
+/* -------------------- ESTATÍSTICAS (E) -------------------- */
+.stats-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background-color: var(--cor-fundo-card);
+    padding: 20px;
+    border-radius: var(--borda-raio);
+    box-shadow: 0 4px 15px var(--cor-sombra);
+    text-align: center;
+}
+.stat-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: var(--cor-primaria);
+}
+
+/* Gráfico Circular de Progresso */
+.progress-ring {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 10px;
+}
+.circular-chart {
+    display: block;
+}
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3.8;
+}
+.dark-mode .circle-bg {
+    stroke: #3d4253;
+}
+.circle {
+    fill: none;
+    stroke: var(--cor-secundaria); /* Dourado */
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.5s ease-in-out;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+.percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--cor-secundaria);
+}
+#prioridade-chart {
+    max-height: 200px;
+    width: 100% !important;
+}
+
+/* -------------------- HÁBITOS (F) -------------------- */
+.habitos-list {
+    text-align: left;
+    margin-bottom: 15px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+.habito-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+.dark-mode .habito-item {
+    border-bottom-color: #3d4253;
+}
+
+/* Animação de Conclusão de Metas */
+@keyframes flash-success {
+    0% { transform: scale(1); opacity: 1; background-color: var(--cor-sucesso); }
+    50% { transform: scale(1.1); opacity: 0.7; background-color: var(--cor-secundaria); }
+    100% { transform: scale(1); opacity: 1; background-color: var(--cor-fundo-principal); }
+}
+
+.meta-concluida-animacao {
+    animation: flash-success 0.8s ease-out;
+}
+
+/* -------------------- MEDIA QUERIES (Responsividade) -------------------- */
+@media (max-width: 768px) {
+    .app-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .app-header h1 {
+        font-size: 1.3rem;
+    }
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .motivacional {
+        display: none; /* Oculta em telas menores para economizar espaço */
+    }
+    .stats-overview {
+        grid-template-columns: 1fr;
+    }
+}
